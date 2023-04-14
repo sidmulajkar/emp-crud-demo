@@ -15,26 +15,37 @@
 
 	<!--Navbar Implementation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-light">
-  <a class="navbar-brand" href="#">Emp Crud Demo</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	  <a class="navbar-brand" href="/">Emp Crud Demo</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <li class="nav-item">
+	        <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
+	      </li>
+	      <li class="nav-item active">
+	        <a class="nav-link" href="addemp" >Add Emp</a>
+	      </li>
+	      
+	  
+	    </ul>
+	    
+	  </div>
+	</nav>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="addemp" >Add Emp</a>
-      </li>
-      
-  
-    </ul>
-    
-  </div>
-</nav>
 
+<!--Alert for displaying the employee creation-->
+	<!--<div th:if=${session.msg}>
+		<div class="alert alert-success alert-dismissible fade show" role="alert" th:text="${session.msg}">
+		<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    	<span aria-hidden="true">&times;</span>
+    	</div>
+	</div>-->
+	
+	
 
 	<!--Table for displaying Emp data-->
 	<div class="container p-5">
@@ -45,27 +56,21 @@
       <th scope="col">Name</th>
       <th scope="col">Designation</th>
       <th scope="col">Salary</th>
+      <th scope="col">Action</th>
     </tr>
   </theadc>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Team Leader</td>
-      <td>45000</td>
+    <tr th:each="e : ${emp}">
+      <th th:text="${e.id}">1</th>
+      <td th:text="${e.name}"></td>
+      <td th:text="${e.designation}"></td>
+      <td th:text="${e.Salary}"></td>
+      <td>
+		  <a class="btn btn-sm btn-primary" th:href="@{/edit/{id}(id=${e.id})}">Edit</a>
+		  <a class="btn btn-sm btn-danger" th:href="@{/delete/{id}(id=${e.id})}">Delete</a>
+	  </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Programmer</td>
-      <td>20000</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>Manager</td>
-      <td>65000</td>
-    </tr>
+    
   </tbody>
 </table>
 	</div>

@@ -42,23 +42,25 @@
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="text-center text-primary">Add Emp</h4>
+						<h4 class="text-center text-primary">Edit Emp</h4>
 
-						<form th:action="@{/register}" method="post">
+						<form th:action="@{/updateemp}" method="post" th:object="${emp}">
+							
+							<input type="hidden" th:value="${emp.id}" name="id">
 
 							<div class="form-group">
 								<label>Enter Full Name</label> <input type="text"
-									class="form-control" name="name">
+									class="form-control" name="name" th:value="${emp.name}">
 							</div>
 
 							<div class="form-group">
 								<label>Enter Designation</label> <input type="text"
-									class="form-control" name="designation">
+									class="form-control" name="designation" th:value="${emp.designation}">
 							</div>
 
 							<div class="form-group">
 								<label>Enter Salary</label> <input type="int"
-									class="form-control" name="salary">
+									class="form-control" name="salary" th:value="${emp.salary}">
 							</div>
 
 
